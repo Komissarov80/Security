@@ -15,30 +15,30 @@ public class MainApp {
        User user2 = new User("User2", "Lastname2", "user2@mail.ru");
        User user3 = new User("User3", "Lastname3", "user3@mail.ru");
        User user4 = new User("User4", "Lastname4", "user4@mail.ru");
-      AnnotationConfigApplicationContext context = 
+
+       AnnotationConfigApplicationContext context =
             new AnnotationConfigApplicationContext(AppConfig.class);
 
-     UserService userService = context.getBean(UserService.class);
+       UserService userService = context.getBean(UserService.class);
        Car car1 = new Car("Model1", 1);
        Car car2 = new Car("Model2", 2);
        Car car3 = new Car("Model3", 3);
        Car car4 = new Car("Model4", 4);
-//      userService.add(car1);
-//      userService.add(car2);
+
        user1.setCar(car1);
        user2.setCar(car2);
        user3.setCar(car3);
        user4.setCar(car4);
 
-      userService.add(user1);
-      userService.add(user2);
-      userService.add(user3);
-      userService.add(user4);
+       userService.add(user1);
+       userService.add(user2);
+       userService.add(user3);
+       userService.add(user4);
 
-      List<User> users = userService.listUsers();
+       List<User> users = userService.listUsers();
 
-      // вызов метода для получения юзера по автомобилю
-       System.out.println("method getUserByCar "+userService.getUserByCar("Model2", 2));
+       // вызов метода для получения юзера по автомобилю
+       System.out.println("method getUserByCar "+userService.getUserByCar("Model4", 4));
 
       for (User user : users) {
          System.out.println("Id = "+user.getId());

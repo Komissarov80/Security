@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public void add(User user) {
+      Car car = user.getCar();
+      sessionFactory.getCurrentSession().save(car);
       sessionFactory.getCurrentSession().save(user);
    }
 
@@ -36,16 +39,15 @@ public class UserDaoImp implements UserDao {
    @Override
    @SuppressWarnings("unchecked")
    public User getUserByCar(String model, int series) {
-      TypedQuery<User> query = null;
-      String hql = "FROM User u WHERE u.car.model=:paramModel and u.car.series=:paramSeries";
-      try {
-         query = sessionFactory.getCurrentSession().createQuery(hql);
-      } catch (HibernateException e) {
-         e.printStackTrace();
-      }
-
-      query.setParameter("paramModel", model).setParameter("paramSeries", series);
-      return query.setMaxResults(1).getSingleResult();
+       TypedQuery<User> query = null;
+       String hql = "FROM User u WHERE u.car.model=:paramModel and u.car.series=:paramSeries";
+       try {
+          query = sessionFactory.getCurrentSession().createQuery(hql);
+       } catch (HibernateException e) {
+          e.printStackTrace();
+       }
+       query.setParameter("paramModel", model).setParameter("paramSeries", series);
+       return query.setMaxResults(1).getSingleResult();
    }
 
 }
