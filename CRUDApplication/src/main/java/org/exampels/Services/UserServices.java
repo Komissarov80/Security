@@ -1,4 +1,4 @@
-package org.exampels.Services;
+package org.exampels.services;
 
 import org.exampels.model.User;
 

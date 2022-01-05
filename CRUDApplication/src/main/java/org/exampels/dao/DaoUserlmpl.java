@@ -14,24 +14,25 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class DaoUserlmpl implements DaoUser{
+public class DaoUserlmpl implements DaoUser {
 
     @PersistenceContext
     private EntityManager sessionFactory;
 
     @Override
     public List<User> getAllUsers() {
-        return sessionFactory.createQuery("SELECT u FROM User u").getResultList();
+        return sessionFactory.createQuery
+                ("SELECT u FROM User u").getResultList();
     }
 
     @Override
     public void addUser(User user) {
-       sessionFactory.persist(user);
+        sessionFactory.persist(user);
     }
 
     @Override
     public void editUser(User user) {
-    sessionFactory.merge(user);
+        sessionFactory.merge(user);
     }
 
     @Override
