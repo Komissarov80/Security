@@ -2,7 +2,6 @@ package org.exampels.controllers;
 
 import org.exampels.services.UserServices;
 import org.exampels.model.User;
-import org.exampels.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
